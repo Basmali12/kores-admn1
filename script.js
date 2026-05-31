@@ -79,6 +79,7 @@ videoUpload.addEventListener('change', (e) => {
 
 function resetForm() {
     document.getElementById('video-name').value = '';
+    document.getElementById('video-type').value = 'free';
     imageUpload.value = '';
     videoUpload.value = '';
     imagePreview.classList.add('hidden');
@@ -231,6 +232,7 @@ async function deleteFromBunny(url) {
 
 saveBtn.addEventListener('click', async () => {
     const name = document.getElementById('video-name').value;
+    const type = document.getElementById('video-type').value;
     const imgFile = imageUpload.files[0];
     const vidFile = videoUpload.files[0];
 
@@ -291,6 +293,7 @@ saveBtn.addEventListener('click', async () => {
                 name,
                 thumbnail: imgUrl,
                 video: vidUrl,
+                type: type,
                 timestamp: Date.now()
             };
 
@@ -353,15 +356,18 @@ async function loadVideos() {
             displayImg = 'https://via.placeholder.com/300x200?text=الصورة+غير+صالحة';
         }
 
+        const typeLabel = data.type === 'paid' ? '<span style="color:red; font-weight:bold;">مدفوع 🔒</span>' : '<span style="color:green; font-weight:bold;">مجاني 🔓</span>';
+
         const card = document.createElement('div');
         card.className = 'video-card';
         card.innerHTML = `
             <img src="${displayImg}" onerror="this.src='https://via.placeholder.com/300x200?text=خطأ'" />
             <div class="card-body">
                 <h3 style="font-size:18px;">${data.name}</h3>
+                <p style="margin-top:5px; font-size:14px;">النوع: ${typeLabel}</p>
             </div>
             <div class="card-actions">
-                <button class="edit-btn" data-id="${data.id}" data-name="${data.name}" data-img="${data.thumbnail}" data-vid="${data.video}">تعديل</button>
+                <button class="edit-btn" data-id="${data.id}" data-name="${data.name}" data-img="${data.thumbnail}" data-vid="${data.video}" data-type="${data.type || 'free'}">تعديل</button>
                 <button class="delete-btn" data-id="${data.id}" data-img="${data.thumbnail}" data-vid="${data.video}">حذف</button>
             </div>
         `;
@@ -398,6 +404,7 @@ async function loadVideos() {
             bgOkBtn.classList.add('hidden');
             resetForm();
             document.getElementById('video-name').value = btnEl.getAttribute('data-name');
+            document.getElementById('video-type').value = btnEl.getAttribute('data-type');
             
             let currentImg = btnEl.getAttribute('data-img');
             let currentVid = btnEl.getAttribute('data-vid');
