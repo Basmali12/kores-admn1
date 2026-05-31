@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- شاشة تسجيل الدخول -->
     <div id="login-container" class="login-container">
         <div class="login-box">
             <input type="password" id="login-password" placeholder="" autofocus />
@@ -15,7 +14,6 @@
         </div>
     </div>
 
-    <!-- التطبيق الرئيسي -->
     <div id="app-container" class="app-container hidden">
         <div id="course-section" class="section-container">
             <header class="app-header">
@@ -25,8 +23,7 @@
 
             <main class="content-scroll">
                 <div id="videos-grid" class="videos-grid">
-                    <!-- سيتم عرض الفيديوهات هنا -->
-                </div>
+                    </div>
             </main>
         </div>
 
@@ -38,8 +35,7 @@
 
             <main class="content-scroll">
                 <div id="users-list" class="users-list">
-                    <!-- سيتم عرض المشتركين هنا -->
-                </div>
+                    </div>
             </main>
         </div>
 
@@ -49,13 +45,20 @@
         </nav>
     </div>
 
-    <!-- نافذة إضافة وتعديل الفيديو -->
     <div id="modal-overlay" class="modal-overlay hidden">
         <div class="modal-box">
             <h3 id="modal-title">إضافة فيديو</h3>
             <div class="form-group">
                 <label>اسم الفيديو</label>
                 <input type="text" id="video-name" placeholder="ادخل اسم الفيديو...">
+            </div>
+            
+            <div class="form-group">
+                <label>حالة الفيديو (الوصول)</label>
+                <select id="video-type" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    <option value="free">مجاني (متاح للجميع)</option>
+                    <option value="paid">مدفوع (للمشتركين المفعلين فقط)</option>
+                </select>
             </div>
             
             <div class="form-group">
@@ -87,7 +90,6 @@
         </div>
     </div>
 
-    <!-- نافذة إضافة مشترك -->
     <div id="add-user-modal" class="modal-overlay hidden">
         <div class="modal-box">
             <h3>إضافة مشترك جديد</h3>
@@ -106,7 +108,6 @@
         </div>
     </div>
 
-    <!-- نافذة تفاصيل المشترك -->
     <div id="user-details-modal" class="modal-overlay hidden">
         <div class="modal-box">
             <h3>تفاصيل المشترك</h3>
